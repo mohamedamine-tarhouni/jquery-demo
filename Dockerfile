@@ -1,5 +1,5 @@
 # Use Eclipse Temurin JDK 17 (actively maintained)
-FROM eclipse-temurin:17-jdk
+FROM FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
