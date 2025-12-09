@@ -4,7 +4,7 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 # Copy built jar under a consistent name
-COPY target/demoJQuery-0.0.1-SNAPSHOT.jar app.jar
+COPY demoJQuery-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
