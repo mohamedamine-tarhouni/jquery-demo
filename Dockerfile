@@ -1,21 +1,19 @@
-FROM eclipse-temurin:21-jdk
+FROM node:20 AS node-deps
 
 WORKDIR /app
 
-# Install Node.js and npm
-RUN apt-get update \
-    && apt-get install -y nodejs npm \
-    && rm -rf /var/lib/apt/lists/*
+COPY package.json ./
 
-# Copy package.json
-COPY package.json package-lock.json ./
+# Use public npm registry for the Docker build
+RUN printf "registry=https://registry.npmjs.org/\n" > /tmp/npmrc \
+    && npm_config_userconfig=/tmp/npmrc npm install
 
-RUN npm config set registry https://registry.npmjs.org/
 
-# Install frontend dependencies
-RUN npm install
+FROM eclipse-temurin:21-jre
 
-# Copy Spring Boot JAR
+WORKDIR /app
+
+COPY --from=node-deps /app/node_modules ./node_modules
 COPY JQuery-demo-v5.jar app.jar
 
 EXPOSE 8080
