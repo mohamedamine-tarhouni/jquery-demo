@@ -10,6 +10,8 @@ RUN apt-get update \
 # Copy package.json
 COPY package.json package-lock.json ./
 
+RUN npm config set registry https://registry.npmjs.org/
+
 # Install frontend dependencies
 RUN npm install
 
