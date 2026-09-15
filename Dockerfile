@@ -8,7 +8,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy package.json
-COPY package.json ./
+COPY package.json package-lock.json ./
 
 # Install frontend dependencies
 RUN npm install
