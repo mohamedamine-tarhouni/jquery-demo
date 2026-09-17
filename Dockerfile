@@ -2,14 +2,6 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-# Install Node.js and npm
-RUN apt-get update \
-    && apt-get install -y nodejs npm \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy package.json
-COPY package.json package-lock.json ./
-
 # Install frontend dependencies
 RUN npm install
 
